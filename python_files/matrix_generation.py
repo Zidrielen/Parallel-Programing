@@ -37,5 +37,5 @@ if __name__ == "__main__":
     #  Генерация квадратных матриц в matrix_1 и в matrix_2
     create_folders()
     for i in range(50, 550, 50):
-        create_matrix(COUNT, i, )
-        create_matrix(COUNT, i, )
+        create_matrix(COUNT, i, "..\\matrix\\matrix_1")
+        create_matrix(COUNT, i, "..\\matrix\\matrix_2")

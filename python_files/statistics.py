@@ -6,11 +6,13 @@ import scipy.stats as sts
 
 GAMMA = 0.95
 STATS_LAB_1 = "../stats/Lab_1/stats.csv"
+STATS_LAB_2 = "../stats/Lab_2/stats.csv"
 INTERVAL_LAB_1 = "../stats/Lab_1/interval.txt"
+INTERVAL_LAB_2 = "../stats/Lab_2/interval.txt"
 
 
 if __name__ == "__main__":
-    cur_size = 0; size_time = dict()
+    """cur_size = 0; size_time = dict()
     with open(STATS_LAB_1, "r") as csvfile:
         csvreader = csv.reader(csvfile, delimiter="\t")
         for row in csvreader:
@@ -37,4 +39,7 @@ if __name__ == "__main__":
     plt.xlabel("Размер квадратной матрицы (одной стороны)")
     plt.ylabel("Время перемножения матриц, мкс")
     plt.plot(size_time.keys(), means_time)
-    plt.show()
+    plt.show()"""
+
+
+

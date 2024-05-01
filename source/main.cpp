@@ -4,19 +4,23 @@
 
 const string MATRIX_1 = "..\\matrix\\matrix_1\\";
 const string MATRIX_2 = "..\\matrix\\matrix_2\\";
+const int THREADS = 2;
+
+
+// Число потоков выставлять равным 2, потому что у меня столько ядер у проца
 
 
 int main()
 {
-    vector<string> name_matrix;
+    // omp_set_num_teams(THREADS);
 
-    /*----Получение имён файлов----*/
+    vector<string> name_matrix;
     name_matrix = get_name_matrix(MATRIX_1);
 
     int cur_size = 0, count = 0;
-    llint *n, *m, *res;
+    llint *n = nullptr, *m = nullptr, *res = nullptr;
+    size_t time = 0;
 
-    /*----Создание файла для сохранения статистики----*/
     FILE* fout = fopen("..\\stats\\Lab_1\\stats.csv", "w");
     if(!fout) {perror(NULL); exit(-1); }
 
@@ -37,11 +41,9 @@ int main()
         read_matrix(MATRIX_1 + name_matrix[i], n);
         read_matrix(MATRIX_2 + name_matrix[i], m);
 
-        size_t time = multiplication_lab_1(n, m, res, size);
-
-        write_matrix(name_matrix[i], res, size);
+        time = multiplication_lab_1(n, m, res, size);
         fprintf_s(fout, "%s\t%zu\n", name_matrix[i].c_str(), time);
-        printf_s("%s - success\n", name_matrix[i].c_str());
+        write_matrix(name_matrix[i], res, size);
     }
 
     fclose(fout);
