@@ -2,10 +2,9 @@ import os
 
 import numpy as np
 
-
-DIR_MATRIX_1 = "C:\\Users\\dpio1\\repos\\Parallel Programing\\matrix\\matrix_1"
-DIR_MATRIX_2 = "C:\\Users\\dpio1\\repos\\Parallel Programing\\matrix\\matrix_2"
-DIR_RESULTS = "C:\\Users\\dpio1\\repos\\Parallel Programing\\matrix\\results"
+DIR_MATRIX_1 = "..\\matrix\\matrix_1"
+DIR_MATRIX_2 = "..\\matrix\\matrix_2"
+DIR_RESULTS = "..\\matrix\\results"
 
 
 if __name__ == "__main__":
