@@ -9,14 +9,12 @@ const int THREADS = 2;
 
 int main()
 {
-    omp_set_num_teams(THREADS);
-
     vector<string> name_matrix;
     name_matrix = get_name_matrix(MATRIX_1);
 
     int cur_size = 0, count = 0;
-    llint *n = nullptr, *m = nullptr, *res = nullptr;
-    size_t time = 0;
+    int *n = nullptr, *m = nullptr, *res = nullptr;
+    int time = 0;
 
     FILE* fout = fopen("..\\stats\\Lab_3\\stats.csv", "w");
     if(!fout) {perror(NULL); exit(-1); }
@@ -28,9 +26,9 @@ int main()
         {
             count = size * size;
             if(cur_size) delete [] m, n, res;
-            m = new llint[count]();
-            n = new llint[count]();
-            res = new llint[count]();
+            m = new int[count]();
+            n = new int[count]();
+            res = new int[count]();
             cur_size = size;
         }
         else fill(res, res + count, 0);
@@ -39,7 +37,7 @@ int main()
         read_matrix(MATRIX_2 + name_matrix[i], m);
 
         time = multiplication_lab_1(n, m, res, size);
-        fprintf_s(fout, "%s\t%zu\n", name_matrix[i].c_str(), time);
+        fprintf_s(fout, "%s\t%d\n", name_matrix[i].c_str(), time);
         write_matrix(name_matrix[i], res, size);
     }
 

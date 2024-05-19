@@ -1,10 +1,10 @@
 #include "other.hpp"
 
 /*----Отсчёт времени в миллисекундах----*/
-size_t comp_time(const system_clock::time_point& start)
+int comp_time(const system_clock::time_point& start)
 {
 	system_clock::time_point finish = system_clock::now();
-	return duration_cast<microseconds>(finish - start).count();
+	return (int)duration_cast<microseconds>(finish - start).count();
 }
 
 
@@ -30,7 +30,7 @@ int get_size_matrix(const string& path)
 
 
 /*----Запись результата умножения матриц----*/
-void write_matrix(const string& filename, llint* res, int size)
+void write_matrix(const string& filename, int* res, int size)
 {
     string file = "..\\matrix\\results\\" + filename;
     FILE* fout = fopen(file.c_str(), "w");
@@ -38,7 +38,7 @@ void write_matrix(const string& filename, llint* res, int size)
     int count = size * size;
     for(int i = 1; i <= count; i++)
     {
-        fprintf_s(fout, "%lld", res[i-1]);
+        fprintf_s(fout, "%d", res[i-1]);
         if(i % size == 0) fprintf_s(fout, "\n");
         else fprintf_s(fout, " ");
     }
@@ -47,11 +47,11 @@ void write_matrix(const string& filename, llint* res, int size)
 
 
 /*----Чтение файла с матрицей----*/
-void read_matrix(const string& path_file, llint* mat)
+void read_matrix(const string& path_file, int* mat)
 {
     FILE* fin = fopen(path_file.c_str(), "r");
     if(!fin) {perror(NULL); exit(-1); }
     for(int j = 0; !feof(fin); j++)
-        fscanf_s(fin, "%lld ", &mat[j]);
+        fscanf_s(fin, "%d ", &mat[j]);
     fclose(fin);
 }
