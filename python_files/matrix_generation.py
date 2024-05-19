@@ -13,7 +13,7 @@ def create_matrix(count: int, size: int, path_to_folder: str) -> None:
 
 def create_folders() -> None:
     matrix_dir = ["matrix_1", "matrix_2", "results"]
-    lab_dir = ["Lab_1", "Lab_2", "Lab_3", "Lab_4"]
+    lab_dir = ["Lab_3"]
 
     if (os.path.isdir("..\\matrix") == False):
         os.mkdir("..\\matrix")

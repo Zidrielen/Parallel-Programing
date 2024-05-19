@@ -5,9 +5,8 @@ import numpy as np
 import scipy.stats as sts
 
 GAMMA = 0.95
-STATS_LAB_1 = "..\\stats\\Lab_1\\stats.csv"
-STATS_LAB_2 = "..\\stats\\Lab_2\\stats.csv"
-INTERVAL_LAB_2 = "..\\stats\\Lab_2\\interval.txt"
+STATS_LAB_3 = "..\\stats\\Lab_3\\stats.csv"
+INTERVAL_LAB_3 = "..\\stats\\Lab_3\\interval.txt"
 
 
 def get_size_time(file: str) -> dict:
@@ -23,7 +22,7 @@ def get_size_time(file: str) -> dict:
     return size_time
 
 
-def save_interval(save_path: str, size_time: dict) -> None:
+def save_interval(save_path: str, size_time: dict) -> dict:
     means_time = list()
     size_time = dict(sorted(size_time.items()))
     with open(save_path, "w") as interval:
@@ -36,24 +35,15 @@ def save_interval(save_path: str, size_time: dict) -> None:
             delta = t * s / np.sqrt(volume)
             interval.write(f"Confidence interval for size = {key}: ")
             interval.write(f"({average - delta}, {average + delta})\n")
+    return means_time
 
 
 if __name__ == "__main__":
-    lab_1 = get_size_time(STATS_LAB_1)
-    lab_2 = get_size_time(STATS_LAB_2)
-
-    save_interval(INTERVAL_LAB_2, lab_2)
-
-    lab_1 = dict(sorted(lab_1.items()))
-    lab_2 = dict(sorted(lab_2.items()))
-    means_time_lab_1 = []; means_time_lab_2 = []
-    for key in lab_1.keys():
-        means_time_lab_1.append(np.mean(lab_1[key]))
-        means_time_lab_2.append(np.mean(lab_2[key]))
+    lab_3 = get_size_time(STATS_LAB_3)
+    means_time = save_interval(INTERVAL_LAB_3, lab_3)
 
     plt.xlabel("Размер квадратной матрицы (одной стороны)")
     plt.ylabel("Время перемножения матриц, мкс")
-    plt.plot(lab_1.keys(), means_time_lab_1, label="Без распараллеливания")
-    plt.plot(lab_1.keys(), means_time_lab_2, label="С распараллеливанием")
+    plt.plot(means_time.keys(), means_time.items())
     plt.legend()
     plt.show()
