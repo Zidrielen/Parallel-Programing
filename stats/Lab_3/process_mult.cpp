@@ -1,6 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#include <algorithm>
 #include <ctime>
 
 typedef unsigned int usint;
@@ -20,7 +20,7 @@ usint multiplication_lab_1(usint* n, usint* m, usint* res, usint size)
         for(j = 0; j < size; j++)
             for(k = 0; k < size; k++)
                 res[i*size+j] += n[i*size+k] * m[k*size+j];
-    return clock() - start;
+    return 1000 * (clock() - start) / CLOCKS_PER_SEC;
 }
 
 
