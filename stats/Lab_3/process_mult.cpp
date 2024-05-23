@@ -7,14 +7,14 @@ typedef unsigned int usint;
 
 using namespace std;
 
-const int COUNT = 100;
-const int MAX_VALUE = 1000 + 1;
+const usint COUNT = 100;
+const usint MAX_VALUE = 1000 + 1;
 
 
 /*----Умножение матриц без распараллеливания----*/
 usint multiplication_lab_1(usint* n, usint* m, usint* res, usint size)
 {
-    int i, j, k;
+    usint i, j, k;
     usint start = clock();
     for(i = 0; i < size; i++)
         for(j = 0; j < size; j++)
@@ -28,12 +28,14 @@ int main()
 {
     srand((unsigned)time(NULL));
     usint time = 0, count_elem = 0;
-    usint *n = nullptr, *m = nullptr, *res = nullptr;
+    usint* n = NULL;
+    usint* m = NULL;
+    usint* res = NULL;
 
     FILE* fout = fopen("stats.csv", "w");
     if(!fout) {perror(NULL); exit(-1); }
 
-    for(int i = 50; i <= 500; i += 50)
+    for(usint i = 50; i <= 500; i += 50)
     {
         count_elem = i * i;
         n = new usint[count_elem];
@@ -41,7 +43,7 @@ int main()
         res = new usint[count_elem];
         for(int j = 0; j < COUNT; j++)
         {
-            for(int k = 0; k < count_elem; k++)
+            for(usint k = 0; k < count_elem; k++)
             {
                 n[k] = rand() % MAX_VALUE;
                 m[k] = rand() % MAX_VALUE;
@@ -49,7 +51,9 @@ int main()
             time = multiplication_lab_1(n, m, res, i);
             fprintf(fout, "%d_%d\t%u\n", i, j, time);
         }
-        delete [] m, n, res;
+        delete [] n;
+        delete [] m;
+        delete [] res;
     }
 
     fclose(fout);
