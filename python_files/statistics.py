@@ -22,7 +22,7 @@ def get_size_time(file: str) -> dict:
     return size_time
 
 
-def save_interval(save_path: str, size_time: dict) -> dict:
+def save_interval(save_path: str, size_time: dict) -> list:
     means_time = list()
     size_time = dict(sorted(size_time.items()))
     with open(save_path, "w") as interval:
@@ -43,7 +43,6 @@ if __name__ == "__main__":
     means_time = save_interval(INTERVAL_LAB_3, lab_3)
 
     plt.xlabel("Размер квадратной матрицы (одной стороны)")
-    plt.ylabel("Время перемножения матриц, мкс")
-    plt.plot(means_time.keys(), means_time.items())
-    plt.legend()
+    plt.ylabel("Время перемножения матриц, мс")
+    plt.plot(lab_3.keys, means_time)
     plt.show()
